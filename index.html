@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager + Theme Switcher + Form</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --accent: #3367d6;
+    }
+
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #f0f0f0;
+      --accent: #90caf9;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .todo-section, .profile-form {
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .todo-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .todo-section li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    input, button {
+      padding: 8px;
+      margin-top: 10px;
+      border: 1px solid var(--accent);
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Task Manager</h1>
+      <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
+
+    <div class="todo-section">
+      <h2>To-Do List</h2>
+      <input type="text" id="new-task" placeholder="Add a new task...">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="task-list"></ul>
+    </div>
+
+    <div class="profile-form">
+      <h2>Create User Profile</h2>
+      <form onsubmit="saveProfile(event)">
+        <input type="text" id="name" placeholder="Name" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <button type="submit">Save Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const newTheme = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+
+    // Load Theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // To-do logic
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    function renderTasks() {
+      const list = document.getElementById('task-list');
+      list.innerHTML = '';
+      tasks.forEach((task, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${task}</span>
+          <div>
+            <button onclick="editTask(${i})">Edit</button>
+            <button onclick="deleteTask(${i})">Delete</button>
+          </div>
+        `;
+        list.appendChild(li);
+      });
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function addTask() {
+      const input = document.getElementById('new-task');
+      const task = input.value.trim();
+      if (task) {
+        tasks.push(task);
+        input.value = '';
+        renderTasks();
+      }
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function editTask(index) {
+      const newTask = prompt("Edit task:", tasks[index]);
+      if (newTask) {
+        tasks[index] = newTask.trim();
+        renderTasks();
+      }
+    }
+
+    renderTasks();
+
+    // Save Profile
+    function saveProfile(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      alert(`Profile saved for ${name} (${email})`);
+    }
+  </script>
+</body>
+</html>
