@@ -93,3 +93,8 @@
     }
     });
 
+function clearLocalStorage() {
+  localStorage.clear();
+  console.log("Local storage has been cleared.");
+  location.reload();
+}

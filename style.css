@@ -2,12 +2,14 @@
       --bg: #ffffff;
       --text: #000000;
       --accent: #3367d6;
+      --accent2: #d9dfde;
     }
 
     [data-theme="dark"] {
       --bg: #121212;
       --text: #f0f0f0;
       --accent: #90caf9;
+      --accent2: #838484;
     }
 
     body {
@@ -110,3 +112,35 @@ nav ul::after {
   display: table;
   clear: both;
 }
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center; /* Vertically center contents */
+  gap: 1rem;           /* Optional spacing between the text and buttons */
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-top: 8px;
+  border-radius: 10px;
+  background-color: var(--accent2);
+}
+
+#task-list li button {
+    margin-top: 0;
+}
+
+footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
