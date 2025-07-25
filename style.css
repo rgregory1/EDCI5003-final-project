@@ -96,7 +96,17 @@ nav li a:hover {
   background-color: #111;
 }
 
-#profile-name {
+nav li#profile-name-li {
     float: right;
+    
+}
+
+nav li#profile-name-li a {
     color: #fff;
+}
+
+nav ul::after {
+  content: "";
+  display: table;
+  clear: both;
 }
