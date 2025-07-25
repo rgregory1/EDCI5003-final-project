@@ -15,6 +15,8 @@
 
     function renderTasks() {
       const list = document.getElementById('task-list');
+      if (!list) return; // prevent error if todo section is removed
+
       list.innerHTML = '';
       tasks.forEach((task, i) => {
         const li = document.createElement('li');
@@ -63,51 +65,31 @@
       localStorage.setItem("name", name);
       localStorage.setItem("email", email);
       alert(`Profile saved for ${name} (${email})`);
+      location.reload();
     }
 
-    // const currentProfileName = localStorage.getItem('name') || 'Create a profile';
-    // const profileNameSlot = document.getElementById("profile-name")
-    // profileNameSlot.textContent = currentProfileName
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const profileNameSlot = document.getElementById('profile-name');
-//   const name = localStorage.getItem('name');
+    document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded fired');
 
-//   if (profileNameSlot) {
-//     if (name) {
-//       profileNameSlot.textContent = name;
-//       profileNameSlot.removeAttribute('href');  // no link when name exists
-//       profileNameSlot.style.cursor = 'default'; // show normal cursor
-//       profileNameSlot.onclick = null;            // disable click
-//     } else {
-//       profileNameSlot.textContent = 'Create a profile';
-//       profileNameSlot.href = 'profile.html';    // link to profile creation page
-//       profileNameSlot.style.cursor = 'pointer'; // show pointer cursor
-//     }
-//   }
-// });
+    const profileNameSlot = document.getElementById('profile-name');
+    console.log('profileNameSlot:', profileNameSlot);
 
+    const name = localStorage.getItem('name');
+    console.log('localStorage name:', name);
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded fired');
-
-  const profileNameSlot = document.getElementById('profile-name');
-  console.log('profileNameSlot:', profileNameSlot);
-
-  const name = localStorage.getItem('name');
-  console.log('localStorage name:', name);
-
-  if (profileNameSlot) {
-    if (name) {
-      profileNameSlot.textContent = name;
-      profileNameSlot.removeAttribute('href');  // no link when name exists
-      profileNameSlot.style.cursor = 'default'; // show normal cursor
-      profileNameSlot.onclick = null;            // disable click
-    } else {
-      profileNameSlot.textContent = 'Create a profile';
-      profileNameSlot.href = 'profile.html';    // link to profile creation page
-      profileNameSlot.style.cursor = 'pointer'; // show pointer cursor
+    if (profileNameSlot) {
+        if (name) {
+        profileNameSlot.textContent = name;
+        profileNameSlot.removeAttribute('href');  // no link when name exists
+        profileNameSlot.style.cursor = 'default'; // show normal cursor
+        profileNameSlot.onclick = null;            // disable click
+        } else {
+        profileNameSlot.textContent = 'Create a profile';
+        profileNameSlot.href = 'profile.html';    // link to profile creation page
+        profileNameSlot.style.cursor = 'pointer'; // show pointer cursor
+        }
     }
-  }
-});
+    });
+
