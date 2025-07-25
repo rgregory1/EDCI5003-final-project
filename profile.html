@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task List</title>
+  <title>Create Profile</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,23 +12,27 @@
       <li><a href="index.html">Task List</a></li>
       <li><a href="profile.html">Create Profile</a></li>
       <li><a href="#">todo</a></li>
-      <li><a href="#" id="profile-name">hello</a></li>
+      <!-- <li><a href="#" id="profile-name"></a></li> -->
     </ul> 
+    <span id="profile-name">hello</span>
   </nav>
   <div class="container">
     <div class="header">
-      <h1>Task List</h1>
+      <h1>Create Profile</h1>
       <button onclick="toggleTheme()">Toggle Theme</button>
     </div>
 
-    <div class="todo-section">
-      <h2>To-Do List</h2>
-      <input type="text" id="new-task" placeholder="Add a new task...">
-      <button onclick="addTask()">Add Task</button>
-      <ul id="task-list"></ul>
+  
+
+    <div class="profile-form">
+      <h2>Create User Profile</h2>
+      <form onsubmit="saveProfile(event)">
+        <input type="text" id="name" placeholder="Name" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <button type="submit">Save Profile</button>
+      </form>
     </div>
-
-
+  </div>
 
   <script src="script.js"></script>
 </body>
