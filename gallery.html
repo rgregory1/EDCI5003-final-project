@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task List</title>
+  <title>gallery</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,21 +18,18 @@
   </nav>
   <div class="container">
     <div class="header">
-      <h1>Task List</h1>
+      <h1>Gallery</h1>
       <button onclick="toggleTheme()">Toggle Theme</button>
     </div>
 
-    <div class="todo-section">
-      <h2>To-Do List</h2>
-      <input type="text" id="new-task" placeholder="Add a new task...">
-      <button onclick="addTask()">Add Task</button>
-      <ul id="task-list"></ul>
-    </div>
-
-     <footer>
-        <button onclick="clearLocalStorage()">Clear Local Storage</button>
-      </footer>
-
+   
+    <div class="gallery">
+    <div class="image-card"><img src="images/dog1.jpg" alt="Image 1"></div>
+    <div class="image-card"><img src="images/dog2.jpg" alt="Image 2"></div>
+    <div class="image-card"><img src="images/dog3.jpg" alt="Image 3"></div>
+    <div class="image-card"><img src="images/dog4.jpg" alt="Image 4"></div>
+    <div class="image-card"><img src="images/dog5.jpg" alt="Image 5"></div>
+    <div class="image-card"><img src="images/dog6.jpg" alt="Image 6"></div>
   <script src="script.js"></script>
-</body>
+    </body>
 </html>

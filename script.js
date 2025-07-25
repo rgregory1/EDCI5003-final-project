@@ -98,3 +98,16 @@ function clearLocalStorage() {
   console.log("Local storage has been cleared.");
   location.reload();
 }
+
+
+document.querySelectorAll('.image-card img').forEach(img => {
+  img.addEventListener('mouseenter', () => {
+    img.style.transform = 'rotateY(180deg)';
+    img.style.filter = 'grayscale(100%)';
+  });
+
+  img.addEventListener('mouseleave', () => {
+    img.style.transform = 'rotateY(0deg)';
+    img.style.filter = 'grayscale(0%)';
+  });
+});
